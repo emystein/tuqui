@@ -1,4 +1,4 @@
 
 tuqui-pharo:
-	git clone git@github.com:melkyades/tuqui-pharo.git
+	git clone git@github.com:emystein/tuqui-pharo.git
 
