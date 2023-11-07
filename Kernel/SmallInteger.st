@@ -279,6 +279,29 @@ SmallInteger >> negated [
 	^super negated
 ]
 
+{ #category : #printing }
+SmallInteger >> printString [
+  | integer next result |
+  self = 0 ifTrue: [^'0'].
+  self = 1 ifTrue: [^'1'].
+  self = 2 ifTrue: [^'2'].
+  self = 3 ifTrue: [^'3'].
+  self = 4 ifTrue: [^'4'].
+  self = 5 ifTrue: [^'5'].
+  self = 6 ifTrue: [^'6'].
+  self = 7 ifTrue: [^'7'].
+  self = 8 ifTrue: [^'8'].
+  self = 9 ifTrue: [^'9'].
+  self < 0 ifTrue: [^'-' , (0 _smiMinus: self) printString].
+  result := ''.
+  integer := self.
+  [ integer = 0 ] whileFalse: [
+    next := integer // 10.
+    result := (integer _smiMinus: (next * 10)) printString , result.
+    integer := next ].
+  ^result
+]
+
 { #category : #arithmetic }
 SmallInteger >> quo: aNumber [
 	| result |
@@ -306,3 +329,9 @@ SmallInteger >> sizeInBytes [
 		ifTrue: [1]
 		ifFalse: [WordSize - (self _leadingZeroBitCount _bitShiftRight: 3)]
 ]
+
+{ #category : #constants }
+SmallInteger class >> zero [
+  ^0
+]
+
